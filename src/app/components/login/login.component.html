@@ -1,0 +1,27 @@
+<div id="body">
+  <div class="main">
+    <div class="login-container">
+      <div *ngIf="!validLogin" class="alert alert-danger animated fadeIn" role="alert">
+        Credenciales incorrectas.
+      </div>
+      <div class="callout primary login">
+        <h4>Inicia sesión</h4>
+        <form (ngSubmit)="enviarForm(f)" #f="ngForm">
+          <div class="form-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" class="form-control" id="correo" placeholder="Correo" ngModel name="nombre" required pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+            <label class="error" *ngIf="!f.valid">Debe ingresar email correcto</label>
+          </div>
+          <div class="form-group">
+            <label for="pass">Contraseña</label>
+            <input type="password" class="form-control" id="pass" placeholder="Contraseña" ngModel name="pass" required>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enviar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

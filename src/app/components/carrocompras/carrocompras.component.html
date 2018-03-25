@@ -1,0 +1,33 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group list-group-flush" *ngFor="let producto of productos">
+              <div class="row">
+                <div class="col-md-2">
+                  <img class="card-img-top" [src]="producto.img" [alt]="producto.nombre">
+                </div>
+                <div class="col-md-10">
+                  <h5 class="card-title">{{ producto.nombreProducto }}</h5>
+                  <p class="card-text">Unidades: <small class="text-muted">{{ producto.cantidad }}</small></p>
+                </div>
+              </div>
+              <p class="card-text"> <b>Subtotal:</b>  {{ producto.precio | currency:'USD' }}</p>
+              <br>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h1>TOTAL: <small>{{ totalPrecioProductos | currency:'USD' }}</small> </h1>
+      <br>
+      <button type="button" name="button" class="btn btn-primary">Cancelar</button>
+      <button type="button" name="button" class="btn btn-primary" (click)="pagar()">Pagar</button>
+    </div>
+  </div>
+
+</div>

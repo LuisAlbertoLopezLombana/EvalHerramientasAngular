@@ -1,0 +1,35 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Catálogo de productos</h1>
+    </div>
+    <div class="col-md-4">
+      <h3><small>¿Qué estas buscando?</small></h3>
+      <form>
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" (keyup)="buscarProducto(buscarProd.value)" #buscarProd>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div id="error" *ngIf="msgerror" class="alert alert-danger" role="alert">Cantidad no permitida, debe ser mayor a uno ( 1 ).</div>
+  <div class="card-columns">
+
+    <div class="card animated fadeIn fast" *ngFor="let key of productos | keys; let i = index">
+      <img class="card-img-top" [src]="productos[key].img" [alt]="productos[key].nombre">
+      <div class="card-body">
+        <h5 class="card-title">{{ productos[key].nombreProducto }}</h5>
+        <p class="card-text">Precio: {{ productos[key].precio }}</p>
+        <p class="card-text">Unidades disponibles: <small class="text-muted">{{ productos[key].uniDisp }}</small></p>
+
+        <div class="row">
+          <div class="col-md-4"><button (click)="verProducto(i)" type="button" name="button" class="btn btn-primary">Ver más</button></div>
+          <div class="col-md-4"><button (click)="addProductoCar(productos[key], cantidad.value, key)" type="button" name="button" class="btn btn-warning">Añadir</button></div>
+          <div class="col-md-4"> <input class="form-control" type="number" #cantidad min="1" value="1" required></div>
+        </div>
+
+        <!-- <a [routerLink]="['/producto',i]" class="btn btn-outline-primary">Ver más link</a> -->
+      </div>
+    </div>
+  </div>
+</div>
